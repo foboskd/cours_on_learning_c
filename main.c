@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "prntfunc.h"
+
 
 int main(){
 
@@ -51,12 +53,8 @@ int main(){
     
     }
 
+    prntfunc(dinamic_array, counter);
 
-    int k = 0;
-    while(k < counter){
-        printf("%d ", dinamic_array[k]);
-        k++;
-    }
 
     free(dinamic_array);
 
