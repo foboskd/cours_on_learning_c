@@ -1,40 +1,37 @@
 #include <stdio.h>
 
 int main(){
-    int x, y, result = 0;
-    char math;
 
-    printf("input x = ");
-    scanf("%d", &x);
+    int array[5] = {1, 19, 3, 8, 4};
 
-    printf("input y = ");
-    scanf("%d", &y);
+    int i = 0;
+    int temp = 0;
 
-    printf("input math operation = ");
-    scanf(" %c", &math);
-    /* Добавление пробела перед %c в scanf(" %c", &math); является необходимым для пропуска символа
- * новой строки или пробела, который может остаться во входном потоке после предыдущего вызова scanf или других функций ввода.
- * Добавление пробела перед %c в scanf(" %c", &math); позволяет пропустить любые символы пробела или новой строки,
- * которые могут находиться во входном потоке перед символом операции. Таким образом, гарантируется корректное
- * считывание символа операции.*/
+    while(i < 5){
+        int j = 0;
 
-    if(math == '+'){
-        result = x + y;
-    }
-    else if(math == '-') {
-        result = x - y;
-    }
-    else if(math == '/'){
-        result = x / y;
-    }
-    else if(math == '*'){
-        result = x * y;
-    }
-    else{
-        printf("invalid symbol");
-        return 0;
+        while(j < 5){
+
+            if(array[i] > array[j]){
+                temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+
+            j++;
+
+        }
+
+        i++;
     }
 
-    printf("Result = %d", result);
+
+    int k = 0;
+
+    while(k < 5){
+        printf("%d ", array[k]);
+        k++;
+    }
+
     return 0;
 }
