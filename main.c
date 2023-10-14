@@ -1,3 +1,4 @@
+// выполнение задания по пузырьковой сортировке
 #include <stdio.h>
 #include <stdlib.h>
 #include "printuserfile.h"
