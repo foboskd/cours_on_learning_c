@@ -4,41 +4,41 @@
 
 int main(){
     
-    int array_element = 0;
-    int counter = 0;
+    int array_element = 0; // данная переменная используется для сохранения входящего числа и последующей передачи данного числа в динамический массив
+    int counter = 0; // данная переменная это коунтер, который сохраняет колличество элементов сохраняенных в массив 
     
-    int *temp_array = NULL;
+    int *temp_array = NULL; // динамический массив, который будет содержать данные пришедшие из инпута
 
-    char logic;
-    printf("Add logic operator \"< | >\" = ");
-    scanf("%c", &logic);
+    char logic; // символьная переменная, которая сохраняет логический символ для последующего определения порядка сортировки пузырьком либо по убыванию либо по возрастанию
+    printf("Add logic operator \"< | >\" = "); // просто сообщение указывающее на то что перед вводом ряда чисел надо внести знак больше меньше
+    scanf("%c", &logic); // берем из потока знак больше меньше
 
-    printf("Add integer row: ");
+    printf("Add integer row: "); // сообщаем что дальше надо вводить числа
 
-    while(scanf("%d", &array_element) != 0){
+    while(scanf("%d", &array_element) != 0){ // цикл который собирает вводимый числовой ряд в массив
 
-        if(array_element == '.'){
+        if(array_element == '.'){ // условие прерывания исполнения цикла, прерываем по символу . 
             break;
         }
 
-        temp_array = (int *)realloc(temp_array, (counter + 1) * sizeof(int));
+        temp_array = (int *)realloc(temp_array, (counter + 1) * sizeof(int)); // указываем динамическому массиву на его размер, функция реаллок переписывает каждую итерацию цикла объем памяти который выделяется для области динамического массива
 
-        temp_array[counter] = array_element;
+        temp_array[counter] = array_element; // присваиваем нашему массиву данные
         
-        counter++;
+        counter++; // инкреминтируем наш каунтер, который будет выступать переменной содержащий данные о колличестве элементов массива
 
     }
 
-    int i = 0;
-    int temp = 0;
+    int i = 0; // переменная содержащая индекс массива
+    int temp = 0; // временная переменная куда будем класть данные при сортировке
 
-    while(i < counter){
+    while(i < counter){ // цикл для сортировки
         
-        int j = 0;
+        int j = 0; // переменная содержащая индекс массива
 
         while(j < counter){
             
-            if (logic == '>'){
+            if (logic == '>'){ // по убыванию
 
                 if(temp_array[i] > temp_array[j]){
                     temp = temp_array[i];
@@ -46,7 +46,7 @@ int main(){
                     temp_array[j] = temp;
                 }
             }
-            else if(logic == '<'){
+            else if(logic == '<'){ // по возрастанию
                 
                 if(temp_array[i] < temp_array[j]){
                     temp = temp_array[i];
@@ -62,7 +62,7 @@ int main(){
         i++;
     }
 
-    printier(temp_array, counter);
+    printier(temp_array, counter); // вывод полученного сортированного ряда обеспечиваем пользовательской функцией, которая храниться в заголовочном файле printuserfile.h
     
     return 0;
 }
