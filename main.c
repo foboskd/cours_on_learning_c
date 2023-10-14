@@ -12,7 +12,7 @@ int main(){
 
         while(j < 5){
 
-            if(array[i] > array[j]){
+            if(array[i] < array[j]){
                 temp = array[i];
                 array[i] = array[j];
                 array[j] = temp;
