@@ -1,71 +1,65 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "printuserfile.h"
 
 int main(){
-    
-    int array_element = 0; // данная переменная используется для сохранения входящего числа и последующей передачи данного числа в динамический массив
-    int counter = 0; // данная переменная это коунтер, который сохраняет колличество элементов сохраняенных в массив 
-    
-    int *temp_array = NULL; // динамический массив, который будет содержать данные пришедшие из инпута
 
-    char logic; // символьная переменная, которая сохраняет логический символ для последующего определения порядка сортировки пузырьком либо по убыванию либо по возрастанию
-    printf("Add logic operator \"< | >\" = "); // просто сообщение указывающее на то что перед вводом ряда чисел надо внести знак больше меньше
-    scanf("%c", &logic); // берем из потока знак больше меньше
+    int counter = 0;
+    int array_element = 0;
 
-    printf("Add integer row: "); // сообщаем что дальше надо вводить числа
+    int *dinamic_array = NULL;
 
-    while(scanf("%d", &array_element) != 0){ // цикл который собирает вводимый числовой ряд в массив
+    printf("TESTInsert integer row: ");
 
-        if(array_element == '.'){ // условие прерывания исполнения цикла, прерываем по символу . 
+    while(scanf("%d", &array_element) != 0){
+
+        if(array_element == '.'){
             break;
         }
 
-        temp_array = (int *)realloc(temp_array, (counter + 1) * sizeof(int)); // указываем динамическому массиву на его размер, функция реаллок переписывает каждую итерацию цикла объем памяти который выделяется для области динамического массива
+        dinamic_array = (int*)realloc(dinamic_array, (counter + 1) * sizeof(int));
 
-        temp_array[counter] = array_element; // присваиваем нашему массиву данные
-        
-        counter++; // инкреминтируем наш каунтер, который будет выступать переменной содержащий данные о колличестве элементов массива
+        dinamic_array[counter] = array_element;
+
+        counter++;
 
     }
 
-    int i = 0; // переменная содержащая индекс массива
-    int temp = 0; // временная переменная куда будем класть данные при сортировке
 
-    while(i < counter){ // цикл для сортировки
-        
-        int j = 0; // переменная содержащая индекс массива
+    int i = 0;
+    int j = 0;
+    int temp = 0;
+    int maxindex = 0;
 
-        while(j < counter){
-            
-            if (logic == '>'){ // по убыванию
+    while (i < counter - 1){
+        j = i + 1;
+        maxindex = i;
 
-                if(temp_array[i] > temp_array[j]){
-                    temp = temp_array[i];
-                    temp_array[i] = temp_array[j];
-                    temp_array[j] = temp;
-                }
+        while (j < counter){
+                       
+            if(dinamic_array[maxindex] < dinamic_array[j]){
+                maxindex = j; 
             }
-            else if(logic == '<'){ // по возрастанию
-                
-                if(temp_array[i] < temp_array[j]){
-                    temp = temp_array[i];
-                    temp_array[i] = temp_array[j];
-                    temp_array[j] = temp;
-                }
-            }
-
             j++;
-
         }
-
+            
+        if(maxindex != i){
+            temp = dinamic_array[maxindex];
+            dinamic_array[maxindex] = dinamic_array[i];
+            dinamic_array[i] = temp;
+        }
         i++;
+    
     }
 
-    printier(temp_array, counter); // вывод полученного сортированного ряда обеспечиваем пользовательской функцией, которая храниться в заголовочном файле printuserfile.h
-    
-    free(temp_array); // освобождаем память, которая была занята реаллоком
+
+    int k = 0;
+    while(k < counter){
+        printf("%d ", dinamic_array[k]);
+        k++;
+    }
+
+    free(dinamic_array);
 
 
-    return 0;
+
 }
