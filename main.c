@@ -1,21 +1,54 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int main(){
+    
+    int array_element = 0;
+    int counter = 0;
+    
+    int *temp_array = NULL;
 
-    int array[5] = {1, 19, 3, 8, 4};
+    char logic;
+    scanf("%c", &logic);
+
+    while(scanf("%d", &array_element) != 0){
+
+        if(array_element == '.'){
+            break;
+        }
+
+        temp_array = (int *)realloc(temp_array, (counter + 1) * sizeof(int));
+
+        temp_array[counter] = array_element;
+        
+        counter++;
+
+    }
 
     int i = 0;
     int temp = 0;
 
-    while(i < 5){
+    while(i < counter){
+        
         int j = 0;
 
-        while(j < 5){
+        while(j < counter){
+            
+            if (logic == '>'){
 
-            if(array[i] < array[j]){
-                temp = array[i];
-                array[i] = array[j];
-                array[j] = temp;
+                if(temp_array[i] > temp_array[j]){
+                    temp = temp_array[i];
+                    temp_array[i] = temp_array[j];
+                    temp_array[j] = temp;
+                }
+            }
+            else if(logic == '<'){
+                
+                if(temp_array[i] < temp_array[j]){
+                    temp = temp_array[i];
+                    temp_array[i] = temp_array[j];
+                    temp_array[j] = temp;
+                }
             }
 
             j++;
@@ -28,8 +61,8 @@ int main(){
 
     int k = 0;
 
-    while(k < 5){
-        printf("%d ", array[k]);
+    while(k < counter){
+        printf("%d ", temp_array[k]);
         k++;
     }
 
