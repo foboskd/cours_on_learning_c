@@ -8,7 +8,7 @@ int main(){
 
     int *dinamic_array = NULL;
 
-    printf("TESTInsert integer row: ");
+    printf("Insert integer row: ");
 
     while(scanf("%d", &array_element) != 0){
 
