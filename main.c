@@ -1,6 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int printier(int *array, int counter){
+    int k = 0;
+    while(k < counter){
+        printf("%d ", array[k]);
+        k++;
+    }
+}
+
 int main(){
     
     int array_element = 0;
@@ -58,13 +66,7 @@ int main(){
         i++;
     }
 
-
-    int k = 0;
-
-    while(k < counter){
-        printf("%d ", temp_array[k]);
-        k++;
-    }
-
+    int printier(temp_array, counter);
+    
     return 0;
 }
