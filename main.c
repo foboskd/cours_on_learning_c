@@ -1,13 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-int printier(int *array, int counter){
-    int k = 0;
-    while(k < counter){
-        printf("%d ", array[k]);
-        k++;
-    }
-}
+#include "printuserfile.h"
 
 int main(){
     
@@ -17,7 +10,10 @@ int main(){
     int *temp_array = NULL;
 
     char logic;
+    printf("Add logic operator \"< | >\" = ");
     scanf("%c", &logic);
+
+    printf("Add integer row: ");
 
     while(scanf("%d", &array_element) != 0){
 
@@ -66,7 +62,7 @@ int main(){
         i++;
     }
 
-    int printier(temp_array, counter);
+    printier(temp_array, counter);
     
     return 0;
 }
