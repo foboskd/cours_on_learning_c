@@ -1,3 +1,5 @@
+//Решение задачи сортировка выбором
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "prntfunc.h"
@@ -5,46 +7,46 @@
 
 int main(){
 
-    int counter = 0;
-    int array_element = 0;
+    int counter = 0; //Создаем переменную в которой будем сохранять колличество элементов массива
+    int array_element = 0; //Переменная для получения из ввода чисел из ряда
 
-    int *dinamic_array = NULL;
+    int *dinamic_array = NULL; //Динамисческий массив для сохранения в него числового ряда
 
-    printf("Insert integer row: ");
+    printf("Insert integer row: "); //Сообщение о том что введите числовой ряд
 
-    while(scanf("%d", &array_element) != 0){
+    while(scanf("%d", &array_element) != 0){ //Цикл в котором наполняем динамический массив
 
-        if(array_element == '.'){
+        if(array_element == '.'){ //условие остановки цикла
             break;
         }
 
-        dinamic_array = (int*)realloc(dinamic_array, (counter + 1) * sizeof(int));
+        dinamic_array = (int*)realloc(dinamic_array, (counter + 1) * sizeof(int));//функцией реалок каждый раз переопределяем размер массива
 
-        dinamic_array[counter] = array_element;
+        dinamic_array[counter] = array_element;//присваеваем конкретному элементу массива конкретное число из ряда
 
-        counter++;
+        counter++;//записываем сюда колличество итераций используем дальше как значение размера массива
 
     }
 
 
-    int i = 0;
-    int j = 0;
-    int temp = 0;
-    int maxindex = 0;
+    int i = 0; //переменная для работы с индексами массива и итерирования цикла 
+    int j = 0; //переменная для работы с индексами массива и итерирования цикла 
+    int temp = 0; //переменная для сортировки
+    int maxindex = 0; //для хранения индекса элемента массива который на конкретной итерации определен как максимальный
 
-    while (i < counter - 1){
-        j = i + 1;
-        maxindex = i;
+    while (i < counter - 1){//counter - 1 потому что у нас на предпоследней итерации первого цикла j будет последним индексом
+        j = i + 1;//задаем индексу j +1 от i так как он должен содержать индекс следующего элемента после i
+        maxindex = i;//задаем первое значение индекса максимального значения
 
         while (j < counter){
                        
-            if(dinamic_array[maxindex] < dinamic_array[j]){
+            if(dinamic_array[maxindex] < dinamic_array[j]){//делаем сравнение цель которого определить максимальный элемент на текущем отрезке массива
                 maxindex = j; 
             }
             j++;
         }
             
-        if(maxindex != i){
+        if(maxindex != i){//если элемент макс массива не равен элементу с индексом выполняем условие
             temp = dinamic_array[maxindex];
             dinamic_array[maxindex] = dinamic_array[i];
             dinamic_array[i] = temp;
@@ -53,7 +55,7 @@ int main(){
     
     }
 
-    prntfunc(dinamic_array, counter);
+    prntfunc(dinamic_array, counter);//пользовательская функция вывода
 
 
     free(dinamic_array);
